@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>あいしゃん Portfolio</title>
+  <meta name="description" content="電子工作・PCB設計・VRChatコミュニティ運営のポートフォリオ" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-in">
+      <a href="#top" class="logo"><span class="pad"></span><span id="logo-name"></span></a>
+      <nav>
+        <a href="#about">Profile</a>
+        <a href="#projects">Works</a>
+        <a href="#shop">Shop</a>
+        <a href="#activities">Activities</a>
+        <a href="#talks">Talks</a>
+        <a href="#timeline">History</a>
+        <a href="#skills">Skills</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-in">
+        <div class="hero-text">
+          <p class="mono eyebrow">// PORTFOLIO</p>
+          <h1 id="catch"></h1>
+          <p class="name"><span id="name"></span><span class="mono sub" id="name-sub"></span></p>
+          <p class="lead" id="lead"></p>
+          <div class="links" id="profile-links"></div>
+        </div>
+        <div class="hero-avatar" id="avatar"></div>
+      </div>
+      <div class="wrap">
+        <ul class="stats" id="stats"></ul>
+      </div>
+    </section>
+
+    <section id="about" class="sec">
+      <div class="wrap">
+        <h2><span class="mono num"></span>Profile <small>プロフィール</small></h2>
+        <dl class="about" id="about-list"></dl>
+      </div>
+    </section>
+
+    <section id="projects" class="sec">
+      <div class="wrap">
+        <h2><span class="mono num"></span>Works <small>制作物</small></h2>
+        <div class="filter" id="project-filter"></div>
+        <div class="projects" id="project-list"></div>
+      </div>
+    </section>
+
+    <section id="shop" class="sec">
+      <div class="wrap">
+        <h2><span class="mono num"></span>Shop <small>頒布・販売（BOOTH）</small></h2>
+        <div class="shop" id="shop-list"></div>
+      </div>
+    </section>
+
+    <section id="activities" class="sec">
+      <div class="wrap">
+        <h2><span class="mono num"></span>Activities <small>団体・コミュニティ活動</small></h2>
+        <div class="activities" id="activity-list"></div>
+      </div>
+    </section>
+
+    <section id="talks" class="sec">
+      <div class="wrap">
+        <h2><span class="mono num"></span>Talks &amp; Writing <small>登壇・執筆</small></h2>
+        <ul class="talks" id="talk-list"></ul>
+      </div>
+    </section>
+
+    <section id="timeline" class="sec">
+      <div class="wrap">
+        <h2><span class="mono num"></span>History <small>経歴</small></h2>
+        <ol class="timeline" id="timeline-list"></ol>
+      </div>
+    </section>
+
+    <section id="skills" class="sec">
+      <div class="wrap">
+        <h2><span class="mono num"></span>Skills <small>スキル</small></h2>
+        <div class="skills" id="skill-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <div class="links" id="foot-links"></div>
+      <p class="mono small">© <span id="year"></span> <span id="foot-name"></span></p>
+    </div>
+  </footer>
+
+  <!-- 中身は content.js を編集してください -->
+  <script src="content.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
