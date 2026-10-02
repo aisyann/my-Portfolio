@@ -33,10 +33,18 @@
     .map((a) => `<div><dt>${esc(a.label)}</dt><dd>${esc(a.text)}</dd></div>`)
     .join("");
 
+  // 写真・動画の枠。動画があれば動画（写真はその表紙）、なければ写真、どちらも無ければ枠を出さない
+  const media = (pr) =>
+    pr.video
+      ? `<div class="img"><video src="${esc(pr.video)}#t=0.1" ${pr.image ? `poster="${esc(pr.image)}"` : ""} controls muted loop playsinline preload="metadata"></video></div>`
+      : pr.image
+      ? `<div class="img" style="background-image:url('${esc(pr.image)}')"></div>`
+      : "";
+
   // ---------- works / research 共通のカード ----------
   const card = (pr) => `
-    <article class="project">
-      <div class="img" ${pr.image ? `style="background-image:url('${esc(pr.image)}');background-size:cover"` : ""}>${pr.image ? "" : "[ photo ]"}</div>
+    <article class="project${pr.image || pr.video ? "" : " noimg"}">
+      ${media(pr)}
       <div class="body">
         <h3>${esc(pr.title)}</h3>
         <p class="period mono">${areaBadge(pr.area)}${esc(pr.period)}</p>
@@ -89,19 +97,25 @@
   renderProjects("");
 
   // ---------- shop ----------
+  // 動画がある商品は、再生ボタンを押してもページが飛ばないように「BOOTHで見る」ボタンを別に付ける
   $("shop-list").innerHTML = (d.shop || [])
-    .map(
-      (it) => `
-    <a class="item" ${ext(it.url)}>
-      <div class="img" ${it.image ? `style="background-image:url('${esc(it.image)}');background-size:cover"` : ""}>${it.image ? "" : "[ photo ]"}</div>
+    .map((it) => {
+      const body = `
       <div class="body">
         <h3>${esc(it.title)}</h3>
         ${it.price ? `<p class="price mono">${esc(it.price)}</p>` : ""}
         <p>${esc(it.summary)}</p>
         ${it.result ? `<p class="result">${esc(it.result)}</p>` : ""}
-      </div>
-    </a>`
-    )
+        ${it.video && it.url ? `<a class="btn shop-btn" ${ext(it.url)}>BOOTHで見る ↗</a>` : ""}
+      </div>`;
+      if (it.video)
+        return `<div class="item">
+      <div class="img"><video src="${esc(it.video)}#t=0.1" ${it.image ? `poster="${esc(it.image)}"` : ""} controls muted playsinline preload="metadata"></video></div>${body}
+    </div>`;
+      const img = it.image ? `<div class="img" style="background-image:url('${esc(it.image)}');background-size:cover"></div>` : "";
+      // URLが無い（発売前）ものはリンクにしない
+      return it.url ? `<a class="item" ${ext(it.url)}>${img}${body}</a>` : `<div class="item soon">${img}${body}</div>`;
+    })
     .join("");
 
   // ---------- activities ----------

@@ -3,7 +3,7 @@
 //  ・文章は "" の中を書き換える
 //  ・項目を増やすときは { ... }, のまとまりをコピーして貼り付ける
 //  ・画像は images フォルダに入れて image: "images/ファイル名.jpg" と書く
-//    （画像がないときは image: "" のままでOK）
+//    （画像がないときは image: "" のままでOK。動画は video: "images/ファイル名.mp4"）
 //  ・中身が空（[] や ""）の欄はサイトに表示されません。書いた分だけ出ます
 //  ※ 数字（いいね数・再生数など）は、自分で最新の値を確認してから書いてください
 // =====================================================================
@@ -22,7 +22,7 @@ window.PORTFOLIO = {
       { label: "X（VRChat）", url: "https://x.com/vrc_aisyan" },
       { label: "X（電子工作）", url: "https://x.com/aisyandensi" },
       { label: "note", url: "https://note.com/aisyan" },
-      // { label: "BOOTH", url: "https://〇〇.booth.pm/" },
+      { label: "BOOTH", url: "https://b1104koubou.booth.pm/" },
     ],
   },
 
@@ -51,7 +51,7 @@ window.PORTFOLIO = {
         "ニキシー管を使った腕時計を、一から設計し直しました。ニキシー管を光らせるための高電圧の回路と、" +
         "腕に着けられる大きさの筐体をまとめるのが難しいところで、前の版よりずっと見た目よく仕上がりました。",
       points: [],
-      image: "",
+      image: "images/nixie.jpg",
       links: [{ label: "完成ポスト", url: "https://x.com/aisyandensi/status/1734512447267184866" }],
     },
     {
@@ -64,6 +64,7 @@ window.PORTFOLIO = {
         "光が切れたことをRaspberry Pi Picoで検知し、MIDIでPCに送って演奏します。NT福島で展示しました。",
       points: [],
       image: "",
+      video: "images/laserharp.mp4",
       links: [],
     },
     {
@@ -79,14 +80,17 @@ window.PORTFOLIO = {
         "エアコンプレッサーで試したとき、マットのフィラメントで作った部品が粉々に割れた。材料と設計を見直すきっかけに",
         "半二重筒式はピストンが作りやすく威力も十分。ただ空気の入る量が少ないのが次の課題",
         "ボディを透明な塩ビ管に変えて、中のピストンの動きが見えるように。管の寸法が違ったのでOリングのシールを調整し直した",
+        "2026年、このエグゾーストキャノンをVRChatのアバター用ギミックにしてBOOTHで販売",
       ],
       image: "",
+      video: "images/exhaust.mp4",
       links: [
         { label: "初号機 完成", url: "https://x.com/aisyandensi/status/1664639985809588224" },
         { label: "部品が割れた失敗", url: "https://x.com/aisyandensi/status/1691677908946022537" },
         { label: "二重筒式", url: "https://x.com/aisyandensi/status/1696409738752176132" },
         { label: "半二重筒式", url: "https://x.com/aisyandensi/status/1700134195719504372" },
         { label: "透明ボディ版", url: "https://x.com/aisyandensi/status/1768777440539586703" },
+        { label: "VRChatギミック版（BOOTH）", url: "https://b1104koubou.booth.pm/items/8918272" },
       ],
     },
     {
@@ -98,7 +102,7 @@ window.PORTFOLIO = {
         "カラーセンサーで読み取った色を音に変える楽器です。LEDテープで光らせながら、" +
         "PicoのPWM出力で音を鳴らします。ボタンでオクターブも切り替えられます。",
       points: [],
-      image: "",
+      image: "images/colorguitar.jpg",
       links: [],
     },
     {
@@ -113,7 +117,8 @@ window.PORTFOLIO = {
       // points には「苦労したこと」「工夫したこと」を自分の言葉で書くのがおすすめ
       // 例: points: ["最初の版は〇〇で動かなくて、△△を直したら安定した"],
       points: [],
-      image: "",
+      image: "images/tracker.jpg",
+      video: "images/tracker.mp4",
       links: [
         { label: "完成報告ポスト", url: "https://x.com/vrc_aisyan/status/1986840521659359390" },
         { label: "個人で基板を作れる話", url: "https://x.com/vrc_aisyan/status/2089230508630905094" },
@@ -129,7 +134,7 @@ window.PORTFOLIO = {
         "届いた基板にはんだ付けし、VketRealで配って交換しました。" +
         "作り方はnoteにまとめていて、VRC Advent Calendar 2025の記事にもなっています。",
       points: [],
-      image: "",
+      image: "images/meishi.jpg",
       links: [
         { label: "届いた報告", url: "https://x.com/vrc_aisyan/status/1998747935333560533" },
         { label: "note：名刺基板作ってみた", url: "https://note.com/aisyan/n/n94f51213280f" },
@@ -205,15 +210,60 @@ window.PORTFOLIO = {
   ],
 
   // BOOTHなどでの頒布・販売。{ ... }, を増やして書く
+  // 発売前のものは url: "" にして、result に「準備中」などと書く（押しても飛ばないカードになる）
   // 例: {
   //       title: "〇〇トラッカー用基板キット",
   //       price: "¥1,500",
   //       summary: "どんな人向けに、何を作って売っているか。",
   //       result: "累計〇〇個頒布",   // 販売数・レビューなど。無ければ "" でOK
   //       image: "images/booth1.jpg",
+  //       video: "",   // 紹介動画があれば "images/〇〇.mp4"
   //       url: "https://〇〇.booth.pm/items/〇〇〇〇",
   //     },
-  shop: [],
+  shop: [
+    {
+      title: "エグゾーストキャノン（VRChatアバター用ギミック）",
+      price: "¥1,000",
+      summary:
+        "現実で何台も作ってきたエグゾーストキャノンを、VRChatのアバターに付けられるギミックにしました。" +
+        "カプラを手で引き抜くと発射されます。",
+      result: "",
+      image: "images/booth_exhaust.jpg",
+      video: "images/exhaust_vrc.mp4",
+      url: "https://b1104koubou.booth.pm/items/8918272",
+    },
+    {
+      title: "BOBOVR用 V睡アタッチメント",
+      price: "¥1,000〜",
+      summary:
+        "VRゴーグルを着けたまま寝る「V睡」のための、BOBOVR M2/M3用アタッチメントです。" +
+        "後頭部の出っ張りを平らなベルトに置き換えるので、横になっても痛くありません。改造は不要です。" +
+        "新型は伸び縮みするヘアバンドにして、長さ合わせが不要・取り外して洗えるようにしました。",
+      result: "旧型の実物はVketReal 2025 Winterで頒布",
+      image: "images/booth_bobovr.jpg",
+      url: "https://b1104koubou.booth.pm/items/7839195",
+    },
+    {
+      title: "瞳コメント（EyeDanmaku）",
+      price: "",
+      summary:
+        "アバターの瞳の中を、短いコメントが右から左へ流れていくギミックです。" +
+        "撫でられるとコメントが増えたり、表情や離席で内容が変わったり、まばたきでまぶたに隠れたりします。",
+      result: "BOOTH出品準備中",
+      image: "images/eyedanmaku.jpg",
+      url: "", // 発売したら商品ページのURLを入れる
+    },
+    {
+      title: "チョコ棒キス（ポッキーゲーム）",
+      price: "",
+      summary:
+        "2人で1本のチョコ棒を両端から食べ進めるギミックです。" +
+        "お互いに見つめ合っていないと食べ進められず、途中で折れることもあります。",
+      result: "11/11（ポッキーの日）に向けて制作中",
+      image: "",
+      url: "",
+    },
+  ],
 
   // 団体・コミュニティでの活動。サークル・部活・学生団体なども同じ形で追加できます
   activities: [
@@ -253,13 +303,17 @@ window.PORTFOLIO = {
   ],
 
   // 登壇・執筆
+  // LT・記事は新しい順に。LTを足すときは下の { kind: "LT", ... }, を1行コピーして書き換える
+  // （url はXの告知ポストなどがあれば入れる。無ければ "" のままでOK）
   talks: [
     {
-      kind: "登壇",
+      kind: "LT",
       title: "VRゴーグル所有者がスマートグラスを買ってみたら 〜XREAL Oneの使用感とVR民との相性",
-      where: "メガネガジェットLT会",
+      where: "2026.08　メガネガジェットLT会（ガジェット愛好会）",
       url: "https://x.com/vrc_aisyan/status/2085743240620442023",
     },
+    { kind: "LT", title: "おうちスポーツ，ダーツの世界", where: "2026.02　ガジェット愛好会", url: "" },
+    { kind: "LT", title: "一旦，大真面目に「例のデバイス」を見てみよう", where: "2025.09　ガジェット愛好会", url: "" },
     {
       kind: "記事",
       title: "【VRChat】名刺基板作ってみた！",
